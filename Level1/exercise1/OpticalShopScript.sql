@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `s201_lvl1ex1_opticalshop` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `s201_lvl1ex1_opticalshop`;
 -- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
 --
 -- Host: localhost    Database: s201_lvl1ex1_opticalshop
@@ -115,18 +117,15 @@ DROP TABLE IF EXISTS `sale`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sale` (
   `id_sale` int NOT NULL AUTO_INCREMENT,
-  `fk_id_glasses` int NOT NULL,
   `fk_id_client` int NOT NULL,
   `date_sale` date DEFAULT NULL,
   `employee_id_employee` int NOT NULL,
   PRIMARY KEY (`id_sale`),
   KEY `id_client_idx` (`fk_id_client`) /*!80000 INVISIBLE */,
-  KEY `fk_id_glasses_idx` (`fk_id_glasses`),
   KEY `fk_sale_employee1_idx` (`employee_id_employee`),
   CONSTRAINT `fk_id_client` FOREIGN KEY (`fk_id_client`) REFERENCES `client` (`id_client`),
-  CONSTRAINT `fk_id_glasses` FOREIGN KEY (`fk_id_glasses`) REFERENCES `glasses` (`id_glasses`),
   CONSTRAINT `fk_sale_employee1` FOREIGN KEY (`employee_id_employee`) REFERENCES `employee` (`id_employee`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +134,7 @@ CREATE TABLE `sale` (
 
 LOCK TABLES `sale` WRITE;
 /*!40000 ALTER TABLE `sale` DISABLE KEYS */;
-INSERT INTO `sale` VALUES (5,11,1,'2023-04-08',1),(6,12,2,'2023-04-08',2);
+INSERT INTO `sale` VALUES (5,1,'2023-04-08',1),(6,2,'2023-04-08',2),(7,1,'2025-04-12',5);
 /*!40000 ALTER TABLE `sale` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +154,7 @@ CREATE TABLE `sale_details` (
   KEY `fk_id_glasses_idx` (`fk_sale_glasses`),
   CONSTRAINT `fk_id_sale` FOREIGN KEY (`fk_id_sale`) REFERENCES `sale` (`id_sale`),
   CONSTRAINT `fk_sale_glasses` FOREIGN KEY (`fk_sale_glasses`) REFERENCES `glasses` (`id_glasses`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +163,7 @@ CREATE TABLE `sale_details` (
 
 LOCK TABLES `sale_details` WRITE;
 /*!40000 ALTER TABLE `sale_details` DISABLE KEYS */;
-INSERT INTO `sale_details` VALUES (3,5,11),(2,6,12);
+INSERT INTO `sale_details` VALUES (3,5,11),(2,6,12),(1,7,13);
 /*!40000 ALTER TABLE `sale_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +197,7 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES (1,'Supplier A','Main St','123','1','A','Madrid','28001','','912345678','910123456','A12345678'),(2,'Supplier B','Oak Avenue','456','2','B','Barcelona','08001','','933456789','933123456','B23456789');
+INSERT INTO `supplier` VALUES (1,'Supplier A','Main St','123','1','A','Madrid','28001','España','912345678','910123456','A12345678'),(2,'Supplier B','Oak Avenue','456','2','B','Barcelona','08001','España','933456789','933123456','B23456789');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-12  7:13:02
+-- Dump completed on 2025-04-12 19:54:34
