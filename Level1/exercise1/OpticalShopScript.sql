@@ -198,9 +198,17 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES (1,'Supplier A','Main St','123','1','A','Madrid','28001','Spain','912345678','910123456','A12345678'),(2,'Supplier B','Oak Avenue','456','2','B','Barcelona','08001','Spain','933456789','933123456','B23456789');
+INSERT INTO `supplier` VALUES (1,'Supplier A','Main St','123','1','A','Madrid','28001','','912345678','910123456','A12345678'),(2,'Supplier B','Oak Avenue','456','2','B','Barcelona','08001','','933456789','933123456','B23456789');
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 's201_lvl1ex1_opticalshop'
+--
+
+--
+-- Dumping routines for database 's201_lvl1ex1_opticalshop'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -211,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-08 11:11:02
+-- Dump completed on 2025-04-12  7:13:02
