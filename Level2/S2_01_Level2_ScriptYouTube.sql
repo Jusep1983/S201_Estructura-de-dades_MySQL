@@ -213,7 +213,10 @@ CREATE TABLE `video` (
   `likes` int NOT NULL DEFAULT '0',
   `dislikes` int NOT NULL DEFAULT '0',
   `visibility` enum('public','unlisted','private') NOT NULL DEFAULT 'public',
-  PRIMARY KEY (`id_video`)
+  `user_id_user` int NOT NULL,
+  PRIMARY KEY (`id_video`),
+  KEY `fk_video_user1_idx` (`user_id_user`),
+  CONSTRAINT `fk_video_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -223,7 +226,7 @@ CREATE TABLE `video` (
 
 LOCK TABLES `video` WRITE;
 /*!40000 ALTER TABLE `video` DISABLE KEYS */;
-INSERT INTO `video` VALUES (1,'Cómo hacer una tortilla','Paso a paso para hacer una tortilla de patatas.',55.30,'tortilla.mp4',480,NULL,230,45,3,'public'),(2,'Yoga para principiantes','Clase de yoga suave para empezar el día.',100.75,'yoga_basico.mp4',900,NULL,1200,300,10,'public'),(3,'Tutorial MySql','Cómo crear una estructura de datos y no morir en el intento...',200.20,'tutorial_mysql.mp4',1500,NULL,9800,540,12,'unlisted');
+INSERT INTO `video` VALUES (1,'Cómo hacer una tortilla','Paso a paso para hacer una tortilla de patatas.',55.30,'tortilla.mp4',480,NULL,230,45,3,'public',0),(2,'Yoga para principiantes','Clase de yoga suave para empezar el día.',100.75,'yoga_basico.mp4',900,NULL,1200,300,10,'public',0),(3,'Tutorial MySql','Cómo crear una estructura de datos y no morir en el intento...',200.20,'tutorial_mysql.mp4',1500,NULL,9800,540,12,'unlisted',0);
 /*!40000 ALTER TABLE `video` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,4 +300,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-12 18:56:54
+-- Dump completed on 2025-04-13 22:39:45
