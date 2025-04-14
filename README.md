@@ -196,7 +196,7 @@ Para ejecutar el proyecto es necesario contar con:
 
 Clona el repositorio:
 
-- git clone https://github.com/tu-usuario/tu-repo.git
+- git clone:   https://github.com/Jusep1983/S201_Estructura-de-dades_MySQL.git
 
 - Abre MySQL Workbench u otra herramienta compatible.
 
@@ -208,7 +208,7 @@ Ejecuta las consultas de verificación que encontrarás en cada nivel para compr
 
 ## 🌐 Despliegue
 
-Este proyecto está pensado para entorno local. No se contempla despliegue online, pero puedes usar plataformas como XAMPP o Docker para entornos portables.
+Este proyecto está pensado para entorno local. No se contempla despliegue online.
 
 ## 🤝 Contribuciones
 
