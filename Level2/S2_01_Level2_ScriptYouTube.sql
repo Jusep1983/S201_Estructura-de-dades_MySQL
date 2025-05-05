@@ -135,6 +135,35 @@ INSERT INTO `playlist_has_video` VALUES (1,1),(1,2),(2,2),(3,3);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `reactions_user_comment`
+--
+
+DROP TABLE IF EXISTS `reactions_user_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reactions_user_comment` (
+  `user_id_user` int NOT NULL,
+  `comment_id_comment` int NOT NULL,
+  `reactions_time_stamp` datetime NOT NULL,
+  `reaction_type` enum('like','dislike') DEFAULT NULL,
+  PRIMARY KEY (`user_id_user`,`comment_id_comment`),
+  KEY `fk_user_has_comment_comment1_idx` (`comment_id_comment`),
+  KEY `fk_user_has_comment_user1_idx` (`user_id_user`),
+  CONSTRAINT `fk_user_has_comment_comment1` FOREIGN KEY (`comment_id_comment`) REFERENCES `comment` (`id_comment`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_user_has_comment_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reactions_user_comment`
+--
+
+LOCK TABLES `reactions_user_comment` WRITE;
+/*!40000 ALTER TABLE `reactions_user_comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reactions_user_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -300,4 +329,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-13 22:39:45
+-- Dump completed on 2025-05-05 14:03:44

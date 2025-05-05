@@ -27,11 +27,10 @@ DROP TABLE IF EXISTS `client`;
 CREATE TABLE `client` (
   `id_client` int NOT NULL AUTO_INCREMENT,
   `name_client` varchar(45) NOT NULL,
-  `adress` varchar(45) NOT NULL,
+  `address` varchar(45) NOT NULL,
   `phone_number` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `register_date` date NOT NULL,
-  `id_employee` int DEFAULT NULL,
   `recommended_by` int DEFAULT NULL,
   PRIMARY KEY (`id_client`),
   KEY `fk_recommended_by_idx` (`recommended_by`),
@@ -45,7 +44,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'Juanito','C/San Ramón 12','666111222','juanito@gmail.com','2023-12-31',3,NULL),(2,'Maria','Av. Libertador 123','655443322','maria@gmail.com','2023-01-20',2,NULL),(3,'Carlos','Calle Falsa 456','612345678','carlos@yahoo.com','2023-05-15',1,2),(4,'Lucía','Calle Sol 789','633344455','lucia@hotmail.com','2022-08-10',4,3),(5,'Pedro','Calle Luna 321','688899900','pedro@gmail.com','2023-02-25',5,1);
+INSERT INTO `client` VALUES (1,'Juanito','C/San Ramón 12','666111222','juanito@gmail.com','2023-12-31',NULL),(2,'Maria','Av. Libertador 123','655443322','maria@gmail.com','2023-01-20',NULL),(3,'Carlos','Calle Falsa 456','612345678','carlos@yahoo.com','2023-05-15',2),(4,'Lucía','Calle Sol 789','633344455','lucia@hotmail.com','2022-08-10',3),(5,'Pedro','Calle Luna 321','688899900','pedro@gmail.com','2023-02-25',1);
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +58,7 @@ DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `id_employee` int NOT NULL,
   `name_empl` varchar(45) NOT NULL,
-  `adress_empl` varchar(45) DEFAULT NULL,
+  `address_empl` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_employee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -119,12 +118,12 @@ CREATE TABLE `sale` (
   `id_sale` int NOT NULL AUTO_INCREMENT,
   `fk_id_client` int NOT NULL,
   `date_sale` date DEFAULT NULL,
-  `employee_id_employee` int NOT NULL,
+  `fk_id_employee` int NOT NULL,
   PRIMARY KEY (`id_sale`),
   KEY `id_client_idx` (`fk_id_client`) /*!80000 INVISIBLE */,
-  KEY `fk_sale_employee1_idx` (`employee_id_employee`),
-  CONSTRAINT `fk_id_client` FOREIGN KEY (`fk_id_client`) REFERENCES `client` (`id_client`),
-  CONSTRAINT `fk_sale_employee1` FOREIGN KEY (`employee_id_employee`) REFERENCES `employee` (`id_employee`)
+  KEY `fk_sale_employee1_idx` (`fk_id_employee`),
+  CONSTRAINT `fk_employee` FOREIGN KEY (`fk_id_employee`) REFERENCES `employee` (`id_employee`),
+  CONSTRAINT `fk_id_client` FOREIGN KEY (`fk_id_client`) REFERENCES `client` (`id_client`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -146,7 +145,7 @@ DROP TABLE IF EXISTS `sale_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sale_details` (
-  `quantity_sale_detaills` int DEFAULT NULL,
+  `quantity_sale_details` int DEFAULT NULL,
   `fk_id_sale` int NOT NULL AUTO_INCREMENT,
   `fk_sale_glasses` int NOT NULL,
   PRIMARY KEY (`fk_id_sale`,`fk_sale_glasses`),
@@ -218,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-13 23:47:57
+-- Dump completed on 2025-05-05 12:53:47

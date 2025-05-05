@@ -41,7 +41,7 @@ CREATE TABLE `city` (
 
 LOCK TABLES `city` WRITE;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES (1,'Cerdanyola del Valles','08290',1),(3,'Reus','43201',3),(4,'Terrassa','08221',1),(5,'Blanes','17300',2),(6,'Lloret de Mar','17310',2),(7,'Reus','43201',3);
+INSERT INTO `city` VALUES (1,'Cerdanyola del Valles','08290',1),(3,'Reus','43201',3),(4,'Terrassa','08221',1),(5,'Blanes','17300',2),(6,'Lloret de Mar','17310',2);
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `client` (
   `id_client` int NOT NULL AUTO_INCREMENT,
   `name_client` varchar(45) NOT NULL,
   `surnames_client` varchar(45) NOT NULL,
-  `adress_c` varchar(45) NOT NULL,
+  `address_client` varchar(45) NOT NULL,
   `phone_number` int NOT NULL,
   `fk_id_city` int NOT NULL,
   PRIMARY KEY (`id_client`),
@@ -356,7 +356,7 @@ CREATE TABLE `province` (
 
 LOCK TABLES `province` WRITE;
 /*!40000 ALTER TABLE `province` DISABLE KEYS */;
-INSERT INTO `province` VALUES (1,'Barcelona'),(2,'Girona'),(3,'Tarragona'),(4,'Barcelona');
+INSERT INTO `province` VALUES (1,'Barcelona'),(2,'Girona'),(3,'Tarragona');
 /*!40000 ALTER TABLE `province` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,10 +370,10 @@ DROP TABLE IF EXISTS `store`;
 CREATE TABLE `store` (
   `id_store` int NOT NULL AUTO_INCREMENT,
   `address_store` varchar(255) NOT NULL,
-  `id_city` int NOT NULL,
+  `fk_id_city` int NOT NULL,
   PRIMARY KEY (`id_store`),
-  KEY `store_ibfk_1` (`id_city`),
-  CONSTRAINT `store_ibfk_1` FOREIGN KEY (`id_city`) REFERENCES `city` (`id_city`) ON UPDATE CASCADE
+  KEY `fk_id_city` (`fk_id_city`),
+  CONSTRAINT `fk_id_city` FOREIGN KEY (`fk_id_city`) REFERENCES `city` (`id_city`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -404,4 +404,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-12 20:07:19
+-- Dump completed on 2025-05-05 13:25:29
