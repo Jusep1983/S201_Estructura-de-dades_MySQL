@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `channel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `channel` (
-  `id_channel` int NOT NULL,
+  `id_channel` int NOT NULL AUTO_INCREMENT,
   `channel_name` varchar(45) NOT NULL,
   `channel_description` varchar(45) NOT NULL,
   `create_on_channel` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -33,7 +33,7 @@ CREATE TABLE `channel` (
   PRIMARY KEY (`id_channel`),
   KEY `fk_channel_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_channel_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `playlist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `playlist` (
-  `id_playlist` int NOT NULL,
+  `id_playlist` int NOT NULL AUTO_INCREMENT,
   `name_playlist` varchar(45) NOT NULL,
   `create_playlist_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `visibility` enum('public','private') NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE `playlist` (
   PRIMARY KEY (`id_playlist`),
   KEY `fk_playlist_user1_idx` (`user_id_user`),
   CONSTRAINT `fk_playlist_user1` FOREIGN KEY (`user_id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `playlist_has_video` (
   PRIMARY KEY (`playlist_id_playlist`,`video_id_video`),
   KEY `fk_playlist_has_video_video1_idx` (`video_id_video`),
   KEY `fk_playlist_has_video_playlist1_idx` (`playlist_id_playlist`),
-  CONSTRAINT `fk_playlist_has_video_playlist1` FOREIGN KEY (`playlist_id_playlist`) REFERENCES `playlist` (`id_playlist`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_playlist_has_video_playlist1` FOREIGN KEY (`playlist_id_playlist`) REFERENCES `playlist` (`id_playlist`),
   CONSTRAINT `fk_playlist_has_video_video1` FOREIGN KEY (`video_id_video`) REFERENCES `video` (`id_video`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -329,4 +329,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-05 14:03:44
+-- Dump completed on 2025-05-05 16:12:12
