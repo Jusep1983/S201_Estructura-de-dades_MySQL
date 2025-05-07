@@ -259,15 +259,12 @@ CREATE TABLE `orders` (
   `delivery_method` enum('in_home','in_store') NOT NULL,
   `total_price_order` decimal(10,2) NOT NULL DEFAULT '0.00',
   `fk_id_client` int NOT NULL,
-  `fk_id_store` int NOT NULL,
   `fk_id_employee` int NOT NULL,
   PRIMARY KEY (`id_order`),
   KEY `fk_orders_client1_idx` (`fk_id_client`),
-  KEY `fk_orders_store1_idx` (`fk_id_store`),
   KEY `fk_orders_employee1_idx` (`fk_id_employee`),
   CONSTRAINT `fk_orders_client1` FOREIGN KEY (`fk_id_client`) REFERENCES `client` (`id_client`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_orders_employee1` FOREIGN KEY (`fk_id_employee`) REFERENCES `employee` (`id_employee`) ON UPDATE CASCADE,
-  CONSTRAINT `fk_orders_store1` FOREIGN KEY (`fk_id_store`) REFERENCES `store` (`id_store`) ON UPDATE CASCADE
+  CONSTRAINT `fk_orders_employee1` FOREIGN KEY (`fk_id_employee`) REFERENCES `employee` (`id_employee`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -277,7 +274,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2025-04-12 01:21:21','in_home',161.50,1,1,10),(2,'2025-04-12 10:00:00','in_store',39.90,1,1,11),(3,'2025-04-12 10:30:00','in_store',15.00,2,2,12),(4,'2025-04-12 11:00:00','in_home',28.80,3,3,10),(5,'2025-04-12 12:30:00','in_store',12.50,2,2,12),(6,'2025-04-12 14:00:00','in_store',20.00,4,3,11);
+INSERT INTO `orders` VALUES (1,'2025-04-12 01:21:21','in_home',161.50,1,10),(2,'2025-04-12 10:00:00','in_store',39.90,1,11),(3,'2025-04-12 10:30:00','in_store',15.00,2,12),(4,'2025-04-12 11:00:00','in_home',28.80,3,10),(5,'2025-04-12 12:30:00','in_store',12.50,2,12),(6,'2025-04-12 14:00:00','in_store',20.00,4,11);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-05 13:25:29
+-- Dump completed on 2025-05-07 13:40:57
